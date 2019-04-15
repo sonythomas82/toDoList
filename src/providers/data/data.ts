@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 /*
   Generated class for the DataProvider provider.
@@ -9,14 +10,15 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class DataProvider {
 
-  lists:any =[
-    {item: "Milk"},
-    {item: "Cheese"},
-    {item: "Bread"},
-    {item: "Egg"}
-  ]
-  constructor() {
-    console.log('Hello DataProvider Provider');
+  lists: any;
+
+  constructor(private storage: Storage) {
+    this.storage.get('List').then((list) => {
+      this.lists = JSON.parse(list);
+    })
   }
 
+  saveItem(newItem) {
+    this.storage.set('List', JSON.stringify(this.lists));
+  }
 }
