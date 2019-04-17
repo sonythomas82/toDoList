@@ -12,12 +12,17 @@ export class DataProvider {
 
   lists: any;
 
-/**
- * Gets list items from localStorage and parse to JSON format
- */
+  /**
+   * Gets list items from localStorage and parse to JSON format
+   */
   constructor(private storage: Storage) {
     this.storage.get('List').then((list) => {
-      this.lists = JSON.parse(list);
+      if (list != null) {
+        this.lists = JSON.parse(list);
+      }
+      else {
+        this.lists = [];
+      }
     })
   }
 
