@@ -34,4 +34,11 @@ export class HomePage {
     this.data.lists.splice(index, 1);
     this.data.saveItem();
   }
+
+  /**
+   * Method to clear localStorage
+   */
+  clearStorage(){
+    this.data.clearList();
+  }
 }

@@ -32,4 +32,9 @@ export class DataProvider {
   saveItem() {
     this.storage.set('List', JSON.stringify(this.lists));
   }
+
+  clearList(){
+    this.storage.remove('List');
+    this.lists = [];
+  }
 }
