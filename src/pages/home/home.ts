@@ -20,7 +20,7 @@ export class HomePage {
    */
   addItem() {
     if (this.newItem != "" && this.data.lists != null) {
-      this.data.lists[this.data.lists.length] = { item: this.newItem };
+      this.data.lists[this.data.lists.length] = { item: this.newItem, status: false };
     }
     this.newItem = "";
     this.data.saveItem();
@@ -38,7 +38,14 @@ export class HomePage {
   /**
    * Method to clear localStorage
    */
-  clearStorage(){
+  clearStorage() {
     this.data.clearList();
+  }
+
+  /**
+   * Method to set item to checked
+   */
+  checkItem(index) {
+    this.data.lists[index].status = !this.data.lists[index].status;
   }
 }

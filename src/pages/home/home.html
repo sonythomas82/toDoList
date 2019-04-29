@@ -9,12 +9,21 @@
 <ion-content padding>
   <ion-list>
     <ion-item-sliding *ngFor="let homelist of data.lists; index as i">
-      <ion-item>
+      <ion-item *ngIf="homelist.status">
+        <s>{{homelist.item}}</s>
+      </ion-item>
+      <ion-item *ngIf="!homelist.status">
         {{homelist.item}}
       </ion-item>
       <ion-item-options side="right">
+        <button ion-button color="secondary" (click)="checkItem(i)">
+          <ion-icon *ngIf="!homelist.status" name="checkmark-circle"></ion-icon>
+          <ion-icon *ngIf="homelist.status" name="close-circle"></ion-icon>
+          <div *ngIf="!homelist.status">Check</div>
+          <div *ngIf="homelist.status">Uncheck</div>
+        </button>
         <button ion-button color="danger" (click)="removeItem(i)">
-          <ion-icon name="close-circle" ></ion-icon>
+          <ion-icon name="trash"></ion-icon>
           Remove
         </button>
       </ion-item-options>
